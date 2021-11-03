@@ -13,7 +13,7 @@ export default function TodoEditPage(props) {
         todoList.filter((todo) => todo.id === parseInt(todoID))[0]
 			);
 		}
-	}, [todoList]);
+	}, [todoList, todoID]);
 
   return (
     <>

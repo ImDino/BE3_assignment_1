@@ -1,5 +1,6 @@
 import React from 'react'
 import { useHistory } from "react-router-dom";
+import ReactMarkdown from 'react-markdown';
 
 export default function TodoDetails({data}) {
   const { title, content, lastEditTime, id } = data;
@@ -12,8 +13,8 @@ export default function TodoDetails({data}) {
   return (
     <>
       <p>{title}</p>
-      <p>{content}</p>
-      <p>{lastEditTime}</p>
+      <ReactMarkdown>{content}</ReactMarkdown>
+      <p>{`Last edited ${lastEditTime}`}</p>
       <button type="button" onClick={openEdit}>Edit</button>
     </>
   )
