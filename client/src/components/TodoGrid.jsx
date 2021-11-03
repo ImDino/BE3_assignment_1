@@ -21,15 +21,13 @@ const StyledGrid = styled.div`
     };
 `;
 
-export default function TodoGrid() {
-  const { todos } = useContext(UserContext);
-
+export default function TodoGrid({data}) {
   return (
     <>
       <h2>TodoGrid</h2>
       <StyledGrid>
         {
-          todos.map((todo, index) => {
+          data.map((todo, index) => {
             return <TodoCard data={todo} key={index}/>
           })
         }

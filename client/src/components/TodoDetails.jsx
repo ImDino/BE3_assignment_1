@@ -1,6 +1,7 @@
 import React from 'react'
+import { useHistory } from "react-router-dom";
 
-export default function TodoEdit({data}) {
+export default function TodoDetails({data}) {
   const { title, content, lastEditTime, id } = data;
   const history = useHistory();
 
@@ -9,10 +10,11 @@ export default function TodoEdit({data}) {
   }
 
   return (
-    <Card onClick={openEdit}>
+    <>
       <p>{title}</p>
       <p>{content}</p>
       <p>{lastEditTime}</p>
-    </Card>
+      <button type="button" onClick={openEdit}>Edit</button>
+    </>
   )
 }

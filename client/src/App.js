@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Switch, Route } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import { UserContext } from './contexts/UserContext';
 import TodoDetailsPage from './pages/TodoDetailsPage';
+import TodoEditPage from './pages/TodoEditPage';
 
 const todos = [
   {
@@ -39,12 +40,19 @@ const todos = [
 ];
 
 export default function App() {
+  const [todoList, setTodoList] = useState([])
+
+  useEffect(() => {
+    setTodoList(todos)
+  }, [])
+
   return (
     <>
-      <UserContext.Provider value={{todos}}>
+      <UserContext.Provider value={{todoList}}>
         <Switch>
             <Route path='/login' component={LoginPage} />
             
+            <Route path='/todo/:id/edit' component={TodoEditPage} />
             <Route path='/todo/:id' component={TodoDetailsPage} />
             <Route path='/' component={HomePage} />
           

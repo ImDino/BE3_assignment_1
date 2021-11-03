@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import TodoGrid from '../components/TodoGrid'
+import { UserContext } from '../contexts/UserContext';
 
 export default function HomePage() {
+  const { todoList } = useContext(UserContext);
+
   return (
-    <div>
-      <TodoGrid />
-    </div>
+    <>
+      {
+        todoList 
+        ? (
+          <TodoGrid data={todoList}/>
+        )
+        : (
+          <p>Loading...</p>
+        )
+      }
+    </>
   )
 }

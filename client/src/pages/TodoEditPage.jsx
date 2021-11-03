@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from "../contexts/UserContext";
-import TodoDetails from '../components/TodoDetails';
+import TodoEditForm from '../components/TodoEditForm';
 
-export default function TodoDetailsPage(props) {
+export default function TodoEditPage(props) {
   const { todoList } = useContext(UserContext);
   const [todoItem, setTodoItem] = useState({})
   const todoID = props.match.params.id;
@@ -14,13 +14,13 @@ export default function TodoDetailsPage(props) {
 			);
 		}
 	}, [todoList]);
-  
+
   return (
     <>
       {
         todoItem 
         ? (
-          <TodoDetails data={todoItem}/>
+          <TodoEditForm data={todoItem}/>
         )
         : (
           <p>Loading...</p>
