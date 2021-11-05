@@ -13,6 +13,8 @@ app.use(cors({
   credentials: true,
 }));
 
+app.use(express.json());
+
 //Routes
 app.use('/', TodoRoute);
 app.use('/auth', AuthRoute);

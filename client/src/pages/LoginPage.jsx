@@ -8,7 +8,8 @@ export default function LoginPage() {
     const serverRoot = process.env.REACT_APP_SERVER_ROOT;
     const path = `${serverRoot}/auth/google`;
     
-    axios.post(path, { tokenId: tokenId });
+    axios.post(path, {tokenId: tokenId})
+      .then(res => console.log(res))
   }
   
   const responseErrorGoogle = (res) => {
