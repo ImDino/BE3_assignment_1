@@ -1,16 +1,23 @@
 import React from 'react'
 import GoogleLogin from 'react-google-login';
-import env from "react-dotenv";
 
 export default function LoginPage() {
+  const responseSuccessGoogle = (res) => {
+    console.log(res);
+  }
+  
+  const responseErrorGoogle = (res) => {
+    console.log(res);
+  }
+
   return (
     <div>
       <h2>Login with google</h2>
       <GoogleLogin
-        clientId={env.GOOGLE_CLIENT_ID}
+        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
         buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
+        onSuccess={responseSuccessGoogle}
+        onFailure={responseErrorGoogle}
         cookiePolicy={'single_host_origin'}
       />,
     </div>
