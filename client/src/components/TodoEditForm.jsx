@@ -4,7 +4,7 @@ import { UserContext } from "../contexts/UserContext";
 import BackBtn from './BackBtn';
 
 export default function TodoEditForm({ todoItem, todoId }) {
-  const { todoList } = useContext(UserContext);
+  const { todoList, setTodoList } = useContext(UserContext);
   const [formData, setFormData] = useState({});
   const history = useHistory();
 
@@ -24,7 +24,9 @@ export default function TodoEditForm({ todoItem, todoId }) {
       history.push(`/todo/${todoId}`);
     } else {
       console.log('update');
-      // TODO send updated item to db then redirect back
+      // TODO send updated item to db
+      // if statuscode 200 add flash success message, update todoList, redirect back
+      // else flash fail message and don't redirect
     }
   }
 

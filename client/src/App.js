@@ -49,7 +49,7 @@ export default function App() {
   
   return (
     <>
-      <UserContext.Provider value={{todoList}}>
+      <UserContext.Provider value={{todoList, setTodoList}}>
         <Switch>
             <Route path='/login' component={LoginPage} />
             
