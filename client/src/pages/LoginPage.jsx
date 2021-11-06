@@ -1,15 +1,25 @@
 import React from 'react'
 import GoogleLogin from 'react-google-login';
-import axios from 'axios';
+import { FetchKit, setToken } from '../data/FetchKit';
 
 export default function LoginPage() {
   const responseSuccessGoogle = (res) => {
     const tokenId = res.tokenObj.id_token;
-    const serverRoot = process.env.REACT_APP_SERVER_ROOT;
-    const path = `${serverRoot}/auth/google`;
-    
-    axios.post(path, {tokenId: tokenId})
-      .then(res => console.log(res))
+    const name = res.profileObj.name;
+
+    FetchKit.login(tokenId)
+      .then(res => {
+        const { data, status } = res;
+        if (status === 200) {
+          setToken(data.token);
+          //setUser(name)
+          //setIsLoggedIn(true) ?
+          //flash message, login success
+          //redirect to home
+        } else {
+          //flash message, login failed
+        }
+      })
   }
   
   const responseErrorGoogle = (res) => {
