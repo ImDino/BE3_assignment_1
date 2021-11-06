@@ -14,10 +14,10 @@ export default function LoginPage() {
 
     FetchKit.login(tokenId)
       .then(res => {
-        const { data } = res;
+        const { token } = res.data;
 
-        if (data) {
-          setToken(data.token);
+        if (token) {
+          setToken(token);
           setIsLoggedIn(true);
           setUserInfo({name, email});
           setMessage('Successfully logged in!');
@@ -28,12 +28,12 @@ export default function LoginPage() {
         setMessageRed(true);
         setMessage('Something went wrong.')
       });
-  }
+  };
   
   const responseErrorGoogle = (res) => {
     setMessageRed(true);
     setMessage('Something went wrong.');
-  }
+  };
 
   return (
     <div>
