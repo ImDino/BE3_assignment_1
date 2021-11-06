@@ -1,29 +1,38 @@
-import React from 'react'
+import React, { useEffect, useContext } from 'react'
 import GoogleLogin from 'react-google-login';
+import { useHistory } from 'react-router-dom';
 import { FetchKit, setToken } from '../data/FetchKit';
+import { UserContext } from "../contexts/UserContext";
 
 export default function LoginPage() {
+  const { setMessage, setMessageRed, setIsLoggedIn, setUserInfo } = useContext(UserContext);
+  const history = useHistory();
+
   const responseSuccessGoogle = (res) => {
     const tokenId = res.tokenObj.id_token;
-    const name = res.profileObj.name;
+    const { name, email } = res.profileObj;
 
     FetchKit.login(tokenId)
       .then(res => {
-        const { data, status } = res;
-        if (status === 200) {
+        const { data } = res;
+
+        if (data) {
           setToken(data.token);
-          //setUser(name)
-          //setIsLoggedIn(true) ?
-          //flash message, login success
-          //redirect to home
-        } else {
-          //flash message, login failed
+          setIsLoggedIn(true);
+          setUserInfo({name, email});
+          setMessage('Successfully logged in!');
+          history.push('/');
         }
       })
+      .catch(error => {
+        setMessageRed(true);
+        setMessage('Something went wrong.')
+      });
   }
   
   const responseErrorGoogle = (res) => {
-    console.log(res);
+    setMessageRed(true);
+    setMessage('Something went wrong.');
   }
 
   return (

@@ -5,7 +5,7 @@ import LoginPage from './pages/LoginPage';
 import { UserContext } from './contexts/UserContext';
 import TodoDetailsPage from './pages/TodoDetailsPage';
 import TodoEditPage from './pages/TodoEditPage';
-import { FetchKit, getToken } from './data/FetchKit';
+import { FetchKit, getToken, setToken } from './data/FetchKit';
 
 /* 
 NOTE mockdata example
@@ -27,43 +27,54 @@ export default function App() {
   const history = useHistory();
 
   useEffect(() => {
-    if (getToken) {
+    if (getToken() && getToken() !== 'null') {
       validateToken();
     } else {
       history.push("/login");
     }
   }, []);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setMessage(null);
-      setMessageRed(false);
-    }, 3000);
-  }, [message]);
-
   const validateToken = () => {
     FetchKit.getUserData()
       .then(res => {
         const { data } = res;
-        
-        if (!data) {
-          setUserInfo(null);
-          setIsLoggedIn(false);
-          setMessage('Session timed out, please sign in.');
-        } else {
+
+        if (data) {
           setUserInfo(data);
           setIsLoggedIn(true);
         }
       })
-  }
-  
+      .catch(error => {
+        const { status } = error.response;
+
+        if (status === 403) {
+          setMessage('Session timed out, please sign in.');
+        } else {
+          setMessageRed(true);
+          setMessage('Something went wrong.');
+        }
+        setToken(null);
+        setUserInfo(null);
+        setIsLoggedIn(false);
+        history.push("/login");
+      });
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMessage(null);
+      setMessageRed(false);
+    }, 2000);
+  }, [message]);
+    
   return (
     <UserContext.Provider
       value={{
         todoList, setTodoList,
         isLoggedIn, setIsLoggedIn,
         userInfo, setUserInfo,
-        history, setMessage}}
+        history, setMessage,
+        setMessageRed}}
     >
       <Switch>
           <Route path='/login' component={LoginPage} />
