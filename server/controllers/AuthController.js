@@ -6,7 +6,7 @@ const User = require('../models/UserModel');
 
 exports.googleLogin = async (req, res) => {
   const { tokenId } = req.body;
-  const { payload } = await client.verifyIdToken({ idToken: tokenId, audience: process.env.GOOGLE_CLIENT_ID })
+  const { payload } = await client.verifyIdToken({ idToken: tokenId, audience: process.env.GOOGLE_CLIENT_ID });
   const { email_verified, name, email } = payload;
 
   if (!email_verified) {
@@ -17,6 +17,7 @@ exports.googleLogin = async (req, res) => {
   else {
     try {
       const existingUser = await User.findOne({ email });
+      const accessToken = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
       
       if (!existingUser) {
         User.create({
@@ -25,7 +26,7 @@ exports.googleLogin = async (req, res) => {
         });
       }
       res.status(200).json({
-        token: jwt.sign(email, process.env.JWT_SECRET)
+        token: accessToken
       });
     } catch (error) {
       res.status(500).json({
