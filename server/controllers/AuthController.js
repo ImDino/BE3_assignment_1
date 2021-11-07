@@ -17,7 +17,7 @@ exports.googleLogin = async (req, res) => {
   else {
     try {
       const existingUser = await User.findOne({ email });
-      const accessToken = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30s' });
+      const accessToken = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '60m' }); //TODO lower to 30
       
       if (!existingUser) {
         User.create({
