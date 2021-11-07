@@ -20,7 +20,6 @@ export default function TodoCard({data}) {
   return (
     <Card onClick={openDetails}>
       <p>{title}</p>
-      <p>{content}</p>
     </Card>
   );
 };
