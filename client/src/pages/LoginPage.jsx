@@ -18,8 +18,8 @@ export default function LoginPage() {
 
         if (token) {
           setToken(token);
-          setIsLoggedIn(true);
           setUserInfo({name, email});
+          setIsLoggedIn(true);
           setMessage('Successfully logged in!');
           history.push('/');
         }
