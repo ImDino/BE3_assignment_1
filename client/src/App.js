@@ -46,7 +46,7 @@ export default function App() {
   const validateToken = () => {
     FetchKit.getUserData()
       .then(res => {
-        const { data } = res;
+        const { data } = res; //TODO make the response "res.data.token"
         setUserInfo(data);
         setIsLoggedIn(true);
       })
