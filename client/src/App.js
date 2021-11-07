@@ -88,7 +88,7 @@ export default function App() {
         handleError, kickUser,
         history}}
     >
-      {isLoggedIn && (<Navbar />)}
+      <Navbar />
       {message && (<MessageBanner />)}
       <h1>My Todo App</h1>
       <Switch>

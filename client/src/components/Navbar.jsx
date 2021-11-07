@@ -1,23 +1,32 @@
 import React, { useContext } from 'react'
+import styled from 'styled-components';
 import { UserContext } from "../contexts/UserContext";
 
+const StyledNavbar = styled.div`
+  height: 30px;
+`;
+
 export default function Navbar() {
-  const { kickUser, history } = useContext(UserContext);
+  const { kickUser, history, isLoggedIn } = useContext(UserContext);
   
   return (
-    <div>
-      <button
-        type="button"
-        onClick={() => {history.push('/')}}
-      >
-        Home
-      </button>
-      <button
-        type="button"
-        onClick={kickUser}
-      >
-        Logout
-      </button>
-    </div>
+    <StyledNavbar>
+      {isLoggedIn && (
+        <>
+          <button
+            type="button"
+            onClick={() => {history.push('/')}}
+          >
+            Home
+          </button>
+          <button
+            type="button"
+            onClick={kickUser}
+          >
+            Logout
+          </button>
+        </>
+      )}
+    </StyledNavbar>
   )
 }
