@@ -6,6 +6,7 @@ import { UserContext } from './contexts/UserContext';
 import TodoDetailsPage from './pages/TodoDetailsPage';
 import TodoEditPage from './pages/TodoEditPage';
 import { FetchKit, getToken, setToken } from './data/FetchKit';
+import Navbar from './components/Navbar';
 
 export default function App() {
   const [todoList, setTodoList] = useState(null);
@@ -82,18 +83,16 @@ export default function App() {
         userInfo, setUserInfo,
         history, setMessage,
         messageRed, setMessageRed,
-        handleError}}
+        handleError, kickUser}}
     >
+      {isLoggedIn && (<Navbar />)}
       <Switch>
           <Route path='/login' component={LoginPage} />
           
           <Route path='/todo/:id/edit' component={TodoEditPage} />
           <Route path='/todo/:id' component={TodoDetailsPage} />
-          <Route path='/' component={HomePage} />
-        
-        {/* //TODO 404 route without changing url 
-        https://github.com/remix-run/react-router/blob/v3/docs/guides/Histories.md#creatememoryhistory
-        */}
+          <Route exact path='/' component={HomePage} />
+          <Route>404</Route>
       </Switch>
     </UserContext.Provider>
   )
