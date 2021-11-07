@@ -6,7 +6,7 @@ const StyledBanner = styled.div`
   width: 100%;
   height: 50px;
   position: fixed;
-  top: 50px;
+  top: 65px;
   left: 0;
   display: flex;
   background-color: ${props => props.warning ? "red" : "#10d62a"};
