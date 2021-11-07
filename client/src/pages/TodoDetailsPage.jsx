@@ -17,6 +17,7 @@ export default function TodoDetailsPage(props) {
   
   return (
     <>
+      <h2>Todo Details</h2>
       {
         todoItem 
         ? (

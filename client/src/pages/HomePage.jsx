@@ -7,6 +7,7 @@ export default function HomePage() {
 
   return (
     <>
+      <h2>Todo List</h2>
       {
         todoList 
         ? (

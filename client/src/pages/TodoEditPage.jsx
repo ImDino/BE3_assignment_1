@@ -17,6 +17,7 @@ export default function TodoEditPage(props) {
   
   return (
     <>
+      <h2>Edit Todo</h2>
       {
         todoItem 
         ? (
