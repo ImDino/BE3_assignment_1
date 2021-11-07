@@ -14,4 +14,9 @@ db.mongoose
   process.exit();
 });
 
+//Schema registry
+require('./models/TodoModel');
+require('./models/UserModel');
+
+
 server.listen(PORT);

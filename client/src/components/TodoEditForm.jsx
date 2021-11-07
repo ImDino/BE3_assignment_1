@@ -26,6 +26,7 @@ export default function TodoEditForm({ todoItem, todoId }) {
       console.log('update');
       // TODO send updated item to db
       // if statuscode 200 add flash success message, update todoList, redirect back
+      //TODO handle 401 on save/create/remove todo
       // else flash fail message and don't redirect
     }
   }
