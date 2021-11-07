@@ -34,7 +34,7 @@ export default function App() {
           handleError(error);
         });
     }
-  }, [isLoggedIn, userInfo])
+  }, [isLoggedIn, userInfo]);
   
   useEffect(() => {
     setTimeout(() => {
@@ -65,14 +65,14 @@ export default function App() {
       setMessageRed(true);
       setMessage('Something went wrong.');
     }
-  }
+  };
 
   const kickUser = () => {
     setToken(null);
     setUserInfo(null);
     setIsLoggedIn(false);
     history.push("/login");
-  }
+  };
   
   return (
     <UserContext.Provider
