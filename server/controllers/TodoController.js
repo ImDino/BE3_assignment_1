@@ -11,22 +11,28 @@ exports.getTodos = async (req, res) => {
       .select('todos');
 
     if(!data) {
-      throw new Error('User not found.');
+      res.status(404).send('User not found.');
     }
     res.status(200).json(data);
   } catch (error) {
-    res.status(500).json({
-      error: error,
-    });
+    res.sendStatus(500);
   };
 };
+
 exports.createTodo = async (req, res) => {
   const { todo } = req.body;
+  const { email } = req.user;
   
   try {
+    const foundUser = await User.find({ email: email });
+
+    if (!foundUser) {
+      res.status(404).send('User not found');
+    }
+
     const newTodo = await Todo.create(todo);
     const { _id } = newTodo;
-    const { email } = req.user;
+
     const user = await User.findOneAndUpdate(
       { email: email },
       {
@@ -34,17 +40,12 @@ exports.createTodo = async (req, res) => {
           todos: _id
         }
       });
-    if (!user) {
-      throw new Error('User not found');
-    } else {
-      res.status(200).json('Success');
-    }
+    res.status(200).send('Success');
   } catch (error) {
-    res.status(500).json({
-      error: error,
-    });
+    res.sendStatus(500);
   };
 };
+
 exports.updateTodo = async (req, res) => {
   const { id } = req.params;
   const { todo } = req.body;
@@ -53,15 +54,40 @@ exports.updateTodo = async (req, res) => {
     const data = await Todo.findByIdAndUpdate(id, todo);
 
     if(!data) {
-      throw new Error('No document found.');
+      res.status(404).send('No document found.');
     }
-    res.status(200).json('Success'); //message: success?
+    res.status(200).send('Success');
   } catch (error) {
-    res.status(500).json({
-      error: error,
-    });
+    res.sendStatus(500);
   };
 };
-exports.deleteTodo = (req, res) => {
-  res.end('deleteTodo');
+
+exports.deleteTodo = async (req, res) => {
+  const { id } = req.params;
+  const { email } = req.user;
+
+  try {
+    const foundUser = await User.find({ email: email });
+    const foundTodo = await Todo.findById(id);
+
+    if (!foundUser) {
+      res.status(404).send('User not found');
+    } 
+    else if (!foundTodo) {
+      res.status(404).send('Todo document not found');
+    }
+    else {
+      const data = await Todo.findByIdAndRemove(id);
+      const user = await User.findOneAndUpdate(
+        { email: email },
+        {
+          $pull: {
+            todos: id
+          }
+        });
+      res.status(200).send('Success');
+    }
+  } catch (error) {
+    res.sendStatus(500);
+  };
 };

@@ -38,4 +38,7 @@ export const FetchKit = {
   createTodo: (todo) => {
     return serverDefault().post('/todo', { todo: todo });
   },
+  deleteTodo: id => {
+    return serverDefault().delete(`/todo/${id}`);
+  },
 };

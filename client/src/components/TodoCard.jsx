@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { UserContext } from "../contexts/UserContext";
+import { FetchKit } from '../data/FetchKit';
 
 const Card = styled.div`
   border: 1px solid grey;
@@ -28,7 +29,7 @@ const Card = styled.div`
 
 export default function TodoCard({data}) {
   const { title, _id } = data;
-  const { history } = useContext(UserContext);
+  const { history, handleError, todoList, setTodoList, setMessage } = useContext(UserContext);
 
   function openDetails() {
     history.push(`/todo/${_id}`);
@@ -36,7 +37,24 @@ export default function TodoCard({data}) {
 
   function deleteTodo(e) {
     e.stopPropagation();
-  }
+    FetchKit.deleteTodo(_id)
+      .then(res => {
+        const { status } = res;
+        
+        if (status === 200) {
+          const removeIndex = todoList.findIndex(todo => {
+            return todo._id === _id;
+          });
+          let newTodoList = todoList;
+          newTodoList.splice(removeIndex, 1);
+          setTodoList([...newTodoList]);
+          setMessage('Removed successfully!');
+        }
+      })
+      .catch(error => {
+        handleError(error);
+      });
+  };
 
   return (
     <Card onClick={openDetails}>
