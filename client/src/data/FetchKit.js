@@ -32,4 +32,7 @@ export const FetchKit = {
   getTodos: () => {
     return serverDefault().get('/todo');
   },
+  updateTodo: (id, todo) => {
+    return serverDefault().patch(`/todo/${id}`, { todo: todo });
+  },
 };

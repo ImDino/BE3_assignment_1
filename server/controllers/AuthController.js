@@ -17,7 +17,11 @@ exports.googleLogin = async (req, res) => {
   else {
     try {
       const existingUser = await User.findOne({ email });
-      const accessToken = jwt.sign({ email: email }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '60m' }); //TODO lower to 30
+      const accessToken = jwt.sign(
+        { email: email },
+        process.env.ACCESS_TOKEN_SECRET,
+        { expiresIn: '60m' }
+      );
       
       if (!existingUser) {
         User.create({
@@ -32,6 +36,6 @@ exports.googleLogin = async (req, res) => {
       res.status(500).json({
         error: "Something went wrong.",
       });
-    }
+    };
   }
 };

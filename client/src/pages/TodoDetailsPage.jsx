@@ -4,19 +4,20 @@ import TodoDetails from '../components/TodoDetails';
 
 export default function TodoDetailsPage(props) {
   const { todoList } = useContext(UserContext);
-  const [todoItem, setTodoItem] = useState({})
-  const todoID = props.match.params.id;
+  const [todoItem, setTodoItem] = useState({});
+  const todoId = props.match.params.id;
   
   useEffect(() => {
-		if (todoList) {
+    if (todoList) {
 			setTodoItem(
-        todoList.filter((todo) => todo.id === parseInt(todoID))[0]
+        todoList.filter((todo) => todo._id === todoId)[0]
 			);
 		}
-	}, [todoList, todoID]);
+	}, [todoList, todoId]);
   
   return (
     <>
+      <h2>Todo Details</h2>
       {
         todoItem 
         ? (
@@ -27,5 +28,5 @@ export default function TodoDetailsPage(props) {
         )
       }
     </>
-  )
-}
+  );
+};

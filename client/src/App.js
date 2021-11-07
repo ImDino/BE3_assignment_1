@@ -6,6 +6,8 @@ import { UserContext } from './contexts/UserContext';
 import TodoDetailsPage from './pages/TodoDetailsPage';
 import TodoEditPage from './pages/TodoEditPage';
 import { FetchKit, getToken, setToken } from './data/FetchKit';
+import Navbar from './components/Navbar';
+import MessageBanner from './components/MessageBanner';
 
 export default function App() {
   const [todoList, setTodoList] = useState(null);
@@ -36,7 +38,7 @@ export default function App() {
     }
   }, [isLoggedIn, userInfo]);
   
-  useEffect(() => {
+  useEffect(() => { //TODO extract and make sure setMessage is reachable in extracted error handler
     setTimeout(() => {
       setMessage(null);
       setMessageRed(false);
@@ -80,19 +82,19 @@ export default function App() {
         todoList, setTodoList,
         isLoggedIn, setIsLoggedIn,
         userInfo, setUserInfo,
-        history, setMessage,
-        messageRed, setMessageRed}}
+        message, setMessage,
+        messageRed, setMessageRed,
+        handleError, kickUser,
+        history}}
     >
+      {isLoggedIn && (<Navbar />)}
+      {message && (<MessageBanner />)}
       <Switch>
           <Route path='/login' component={LoginPage} />
-          
           <Route path='/todo/:id/edit' component={TodoEditPage} />
           <Route path='/todo/:id' component={TodoDetailsPage} />
-          <Route path='/' component={HomePage} />
-        
-        {/* //TODO 404 route without changing url 
-        https://github.com/remix-run/react-router/blob/v3/docs/guides/Histories.md#creatememoryhistory
-        */}
+          <Route exact path='/' component={HomePage} />
+          <Route>404</Route>
       </Switch>
     </UserContext.Provider>
   )

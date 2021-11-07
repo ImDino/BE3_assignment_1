@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { UserContext } from '../contexts/UserContext';
 import TodoCard from './TodoCard';
 
 const StyledGrid = styled.div`
@@ -21,17 +20,14 @@ const StyledGrid = styled.div`
     };
 `;
 
-export default function TodoGrid({data}) {
+export default function TodoGrid({data}) { //REVIEW change from data to todoList?
   return (
-    <>
-      <h2>TodoGrid</h2>
-      <StyledGrid>
-        {
-          data.map((todo, index) => {
-            return <TodoCard data={todo} key={index}/>
-          })
-        }
-      </StyledGrid>
-    </>
-  )
-}
+    <StyledGrid>
+      {
+        data.map((todo, index) => {
+          return <TodoCard data={todo} key={index}/>
+        })
+      }
+    </StyledGrid>
+  );
+};
