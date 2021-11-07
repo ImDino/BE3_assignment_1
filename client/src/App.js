@@ -8,6 +8,7 @@ import TodoEditPage from './pages/TodoEditPage';
 import { FetchKit, getToken, setToken } from './data/FetchKit';
 import Navbar from './components/Navbar';
 import MessageBanner from './components/MessageBanner';
+import TodoCreatePage from './pages/TodoCreatePage';
 
 export default function App() {
   const [todoList, setTodoList] = useState(null);
@@ -91,6 +92,7 @@ export default function App() {
       {message && (<MessageBanner />)}
       <Switch>
           <Route path='/login' component={LoginPage} />
+          <Route path='/todo/create' component={TodoCreatePage} />
           <Route path='/todo/:id/edit' component={TodoEditPage} />
           <Route path='/todo/:id' component={TodoDetailsPage} />
           <Route exact path='/' component={HomePage} />
