@@ -10,7 +10,7 @@ export default function TodoEditPage(props) {
   useEffect(() => {
 		if (todoList) {
 			setTodoItem(
-        todoList.filter((todo) => todo.id === parseInt(todoId))[0]
+        todoList.filter((todo) => todo._id === todoId)[0]
 			);
 		}
 	}, [todoList, todoId]);

@@ -5,11 +5,11 @@ import moment from 'moment';
 import BackBtn from './BackBtn';
 
 export default function TodoDetails({data}) {
-  const { title, content, lastEditTime, id } = data;
+  const { title, content, lastEditTime, _id } = data;
   const history = useHistory();
 
   function openEdit() {
-    history.push(`/todo/${id}/edit`);
+    history.push(`/todo/${_id}/edit`);
   };
 
   return (
