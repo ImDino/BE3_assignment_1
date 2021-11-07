@@ -88,7 +88,6 @@ export default function App() {
       {isLoggedIn && (<Navbar />)}
       <Switch>
           <Route path='/login' component={LoginPage} />
-          
           <Route path='/todo/:id/edit' component={TodoEditPage} />
           <Route path='/todo/:id' component={TodoDetailsPage} />
           <Route exact path='/' component={HomePage} />
