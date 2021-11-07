@@ -7,6 +7,7 @@ import TodoDetailsPage from './pages/TodoDetailsPage';
 import TodoEditPage from './pages/TodoEditPage';
 import { FetchKit, getToken, setToken } from './data/FetchKit';
 import Navbar from './components/Navbar';
+import MessageBanner from './components/MessageBanner';
 
 export default function App() {
   const [todoList, setTodoList] = useState(null);
@@ -81,11 +82,13 @@ export default function App() {
         todoList, setTodoList,
         isLoggedIn, setIsLoggedIn,
         userInfo, setUserInfo,
-        history, setMessage,
+        message, setMessage,
         messageRed, setMessageRed,
-        handleError, kickUser}}
+        handleError, kickUser,
+        history}}
     >
       {isLoggedIn && (<Navbar />)}
+      {message && (<MessageBanner />)}
       <Switch>
           <Route path='/login' component={LoginPage} />
           <Route path='/todo/:id/edit' component={TodoEditPage} />
