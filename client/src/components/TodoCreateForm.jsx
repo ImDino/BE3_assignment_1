@@ -15,12 +15,14 @@ export default function TodoCreateForm() {
   };
   
   function createTodo() {
+    //!FIXME embed the new _id in todoList
+    //TODO needs rearranging, get result of todo first before updating todoList
     FetchKit.createTodo(formData)
       .then(res => {
         const { status } = res;
         
         if (status === 200) {
-          let newTodoList = todoList;
+          let newTodoList = todoList; 
           newTodoList.push(formData);
           setTodoList([...newTodoList]);
           setMessage('Created successfully!');
