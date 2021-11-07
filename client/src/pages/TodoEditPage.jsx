@@ -4,7 +4,7 @@ import TodoEditForm from '../components/TodoEditForm';
 
 export default function TodoEditPage(props) {
   const { todoList } = useContext(UserContext);
-  const [todoItem, setTodoItem] = useState(null)
+  const [todoItem, setTodoItem] = useState(null);
   const todoId = props.match.params.id;
   
   useEffect(() => {
@@ -28,5 +28,5 @@ export default function TodoEditPage(props) {
         )
       }
     </>
-  )
-}
+  );
+};
