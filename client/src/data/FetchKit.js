@@ -10,7 +10,7 @@ export const setToken = token => {
 const serverLogin = () => {
   return axios.create({
     baseURL: process.env.REACT_APP_SERVER_ROOT,
-  })
+  });
 };
 
 const serverDefault = () => {
@@ -20,7 +20,7 @@ const serverDefault = () => {
       authorization: `Bearer ${getToken()}`
     },
   });
-}
+};
 
 export const FetchKit = {
   login: googleToken => {
