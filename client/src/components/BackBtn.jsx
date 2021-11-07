@@ -1,8 +1,8 @@
-import React from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useContext } from 'react';
+import { UserContext } from "../contexts/UserContext";
 
 export default function BackBtn({label}) {
-  const history = useHistory();
+  const { history } = useContext(UserContext);
 
   function goBack() {
     history.goBack();

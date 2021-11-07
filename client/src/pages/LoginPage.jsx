@@ -1,12 +1,10 @@
-import React, { useEffect, useContext } from 'react'
+import React, { useContext } from 'react'
 import GoogleLogin from 'react-google-login';
-import { useHistory } from 'react-router-dom';
 import { FetchKit, setToken } from '../data/FetchKit';
 import { UserContext } from "../contexts/UserContext";
 
 export default function LoginPage() {
-  const { setMessage, setMessageRed, setIsLoggedIn, setUserInfo } = useContext(UserContext);
-  const history = useHistory();
+  const { setMessage, setMessageRed, setIsLoggedIn, setUserInfo, history } = useContext(UserContext);
 
   const responseSuccessGoogle = (res) => {
     const tokenId = res.tokenObj.id_token;

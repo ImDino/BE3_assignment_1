@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { useHistory } from 'react-router-dom';
+import { UserContext } from "../contexts/UserContext";
 
 const Card = styled.div`
   border: 1px solid grey;
@@ -11,7 +11,7 @@ const Card = styled.div`
 
 export default function TodoCard({data}) {
   const { title, _id } = data;
-  const history = useHistory();
+  const { history } = useContext(UserContext);
 
   function openDetails() {
     history.push(`/todo/${_id}`);

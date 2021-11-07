@@ -1,12 +1,12 @@
-import React from 'react';
-import { useHistory } from "react-router-dom";
+import React, { useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
 import BackBtn from './BackBtn';
+import { UserContext } from "../contexts/UserContext";
 
 export default function TodoDetails({data}) {
   const { title, content, lastEditTime, _id } = data;
-  const history = useHistory();
+  const { history } = useContext(UserContext);
 
   function openEdit() {
     history.push(`/todo/${_id}/edit`);

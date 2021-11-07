@@ -1,13 +1,11 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useHistory } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { FetchKit } from '../data/FetchKit';
 import BackBtn from './BackBtn';
 
 export default function TodoEditForm({ todoItem, todoId }) {
-  const { todoList, setTodoList, setMessage, handleError } = useContext(UserContext);
+  const { todoList, setTodoList, setMessage, handleError, history } = useContext(UserContext);
   const [formData, setFormData] = useState({});
-  const history = useHistory();
 
   useEffect(() => {
     setFormData(todoItem)
