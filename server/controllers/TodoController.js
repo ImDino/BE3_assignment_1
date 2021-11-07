@@ -10,28 +10,36 @@ exports.getTodos = async (req, res) => {
       .populate({ path: 'todos' })
       .select('todos');
 
+    if(!data) {
+      throw new Error('User not found.');
+    }
     res.status(200).json(data);
   } catch (error) {
     res.status(500).json({
-      error: "DB lookup fail.",
+      error: error,
     });
-  }
-}
+  };
+};
 exports.createTodo = (req, res) => {
   res.end('createTodo')
-}
+};
 exports.updateTodo = async (req, res) => {
   const { id } = req.params;
   const { todo } = req.body;
 
   try {
     const data = await Todo.findByIdAndUpdate(id, todo);
-    console.log(data)
-    res.end('updateTodo')
+
+    if(!data) {
+      throw new Error('No document found.');
+    }
+    res.status(200).json('Success'); //message: success?
   } catch (error) {
-    console.log(error)
-  }
-}
+    res.status(500).json({
+      error: error,
+    });
+  };
+};
 exports.deleteTodo = (req, res) => {
-  res.end('deleteTodo')
-}
+  res.end('deleteTodo');
+};
