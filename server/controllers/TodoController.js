@@ -33,14 +33,14 @@ exports.createTodo = async (req, res) => {
     const newTodo = await Todo.create(todo);
     const { _id } = newTodo;
 
-    const user = await User.findOneAndUpdate(
+    await User.findOneAndUpdate(
       { email: email },
       {
         $push: {
           todos: _id
         }
       });
-    res.status(200).send('Success');
+    res.status(200).json({ todoId: _id });
   } catch (error) {
     res.sendStatus(500);
   };
@@ -77,8 +77,8 @@ exports.deleteTodo = async (req, res) => {
       res.status(404).send('Todo document not found');
     }
     else {
-      const data = await Todo.findByIdAndRemove(id);
-      const user = await User.findOneAndUpdate(
+      await Todo.findByIdAndRemove(id);
+      await User.findOneAndUpdate(
         { email: email },
         {
           $pull: {
