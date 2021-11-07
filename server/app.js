@@ -6,6 +6,7 @@ const app = express()
 const TodoRoute = require('./routes/TodoRoute');
 const AuthRoute = require('./routes/AuthRoute');
 const UserRoute = require('./routes/UserRoute');
+const { authenticateToken } = require('./middleware/authentication');
 
 //Cors
 app.use(cors({
@@ -16,8 +17,8 @@ app.use(cors({
 app.use(express.json());
 
 //Routes
-app.use('/', TodoRoute);
 app.use('/auth', AuthRoute);
-app.use('/user', UserRoute);
+app.use('/todo', authenticateToken, TodoRoute);
+app.use('/user', authenticateToken, UserRoute);
 
 module.exports = app;
