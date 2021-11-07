@@ -61,6 +61,15 @@ export default function App() {
   };
 
   useEffect(() => {
+    if (isLoggedIn) {
+      FetchKit.getTodos()
+        .then(res => {
+          console.log(res)
+        })
+    }
+  }, [isLoggedIn])
+
+  useEffect(() => {
     setTimeout(() => {
       setMessage(null);
       setMessageRed(false);
