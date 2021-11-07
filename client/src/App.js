@@ -7,17 +7,6 @@ import TodoDetailsPage from './pages/TodoDetailsPage';
 import TodoEditPage from './pages/TodoEditPage';
 import { FetchKit, getToken, setToken } from './data/FetchKit';
 
-/* 
-NOTE mockdata example
-const todos = [
-  {
-    id: 1,
-    title: 'First todo',
-    content: '..and it\'s content',
-    lastEditTime: new Date('04 Oct 2021 01:12:00 GMT'),
-  },
-];
- */
 export default function App() {
   const [todoList, setTodoList] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
@@ -33,49 +22,58 @@ export default function App() {
       history.push("/login");
     }
   }, []);
-
-  const validateToken = () => {
-    FetchKit.getUserData()
-      .then(res => {
-        const { data } = res;
-
-        if (data) {
-          setUserInfo(data);
-          setIsLoggedIn(true);
-        }
-      })
-      .catch(error => {
-        const { status } = error.response;
-
-        if (status === 403) {
-          setMessage('Session timed out, please sign in.');
-        } else {
-          setMessageRed(true);
-          setMessage('Something went wrong.');
-        }
-        setToken(null);
-        setUserInfo(null);
-        setIsLoggedIn(false);
-        history.push("/login");
-      });
-  };
-
+  
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && userInfo) {
       FetchKit.getTodos()
         .then(res => {
-          console.log(res)
+          const { todos } = res.data;
+          setTodoList(todos);
         })
+        .catch(error => {
+          handleError(error);
+        });
     }
-  }, [isLoggedIn])
-
+  }, [isLoggedIn, userInfo])
+  
   useEffect(() => {
     setTimeout(() => {
       setMessage(null);
       setMessageRed(false);
     }, 2000);
   }, [message]);
+
+  const validateToken = () => {
+    FetchKit.getUserData()
+      .then(res => {
+        const { data } = res;
+        setUserInfo(data);
+        setIsLoggedIn(true);
+      })
+      .catch(error => {
+        handleError(error);
+      });
+  };
+
+  const handleError = (error) => {
+    const { status } = error.response;
     
+    if (status === 403) {
+      setMessage('Session timed out, please sign in.');
+      kickUser();
+    } else {
+      setMessageRed(true);
+      setMessage('Something went wrong.');
+    }
+  }
+
+  const kickUser = () => {
+    setToken(null);
+    setUserInfo(null);
+    setIsLoggedIn(false);
+    history.push("/login");
+  }
+  
   return (
     <UserContext.Provider
       value={{
@@ -83,7 +81,7 @@ export default function App() {
         isLoggedIn, setIsLoggedIn,
         userInfo, setUserInfo,
         history, setMessage,
-        setMessageRed}}
+        messageRed, setMessageRed}}
     >
       <Switch>
           <Route path='/login' component={LoginPage} />
