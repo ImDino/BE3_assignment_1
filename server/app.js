@@ -10,7 +10,7 @@ const { authenticateToken } = require('./middleware/authentication');
 
 //Cors
 app.use(cors({
-  origin: process.env.CLIENT,
+  origin: process.env.CLIENT || 'http://localhost:3000',
   credentials: true,
 }));
 
