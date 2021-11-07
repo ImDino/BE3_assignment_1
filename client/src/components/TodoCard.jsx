@@ -10,7 +10,7 @@ const Card = styled.div`
 `;
 
 export default function TodoCard({data}) {
-  const { title, content, _id } = data;
+  const { title, _id } = data;
   const history = useHistory();
 
   function openDetails() {
