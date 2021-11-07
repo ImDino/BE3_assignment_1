@@ -21,7 +21,7 @@ const StyledGrid = styled.div`
     };
 `;
 
-export default function TodoGrid({data}) {
+export default function TodoGrid({data}) { //REVIEW change from data to todoList?
   return (
     <>
       <h2>TodoGrid</h2>
