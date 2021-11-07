@@ -4,7 +4,7 @@ import TodoDetails from '../components/TodoDetails';
 
 export default function TodoDetailsPage(props) {
   const { todoList } = useContext(UserContext);
-  const [todoItem, setTodoItem] = useState({})
+  const [todoItem, setTodoItem] = useState({});
   const todoId = props.match.params.id;
   
   useEffect(() => {
@@ -28,5 +28,5 @@ export default function TodoDetailsPage(props) {
         )
       }
     </>
-  )
-}
+  );
+};
