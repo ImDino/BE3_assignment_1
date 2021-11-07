@@ -36,7 +36,7 @@ export default function App() {
     }
   }, [isLoggedIn, userInfo]);
   
-  useEffect(() => {
+  useEffect(() => { //TODO extract and make sure setMessage is reachable in extracted error handler
     setTimeout(() => {
       setMessage(null);
       setMessageRed(false);
@@ -81,7 +81,8 @@ export default function App() {
         isLoggedIn, setIsLoggedIn,
         userInfo, setUserInfo,
         history, setMessage,
-        messageRed, setMessageRed}}
+        messageRed, setMessageRed,
+        handleError}}
     >
       <Switch>
           <Route path='/login' component={LoginPage} />
