@@ -3,13 +3,9 @@ import { UserContext } from "../contexts/UserContext";
 import { FetchKit } from '../data/FetchKit';
 import BackBtn from './BackBtn';
 
-export default function TodoEditForm({ todoItem, todoId }) {
+export default function TodoCreateForm() {
   const { todoList, setTodoList, setMessage, handleError, history } = useContext(UserContext);
   const [formData, setFormData] = useState({});
-
-  useEffect(() => {
-    setFormData(todoItem)
-  }, []);
 
   function handleOnChange(e) {
     const name = e.target.name;
@@ -18,29 +14,22 @@ export default function TodoEditForm({ todoItem, todoId }) {
     setFormData((prevState) => ({ ...prevState, lastEditTime: new Date() }));
   };
   
-  function saveChanges() {
-    if (formData === todoItem) {
-      history.goBack();
-    } else {
-      FetchKit.updateTodo(todoId, formData)
-        .then(res => {
-          const { status } = res;
-          
-          if (status === 200) {
-            const updateIndex = todoList.findIndex(todo => {
-              return todo._id === todoId;
-            });
-            let newTodoList = todoList;
-            newTodoList[updateIndex] = formData;
-            setTodoList([...newTodoList]);
-            setMessage('Updated successfully!');
-            history.goBack();
-          }
-        })
-        .catch(error => {
-          handleError(error);
-        });
-    }
+  function createTodo() {
+    FetchKit.createTodo(formData)
+      .then(res => {
+        const { status } = res;
+        
+        if (status === 200) {
+          let newTodoList = todoList;
+          newTodoList.push(formData);
+          setTodoList([...newTodoList]);
+          setMessage('Created successfully!');
+          history.goBack();
+        }
+      })
+      .catch(error => {
+        handleError(error);
+      });
   };
 
   return (
@@ -61,7 +50,7 @@ export default function TodoEditForm({ todoItem, todoId }) {
       <BackBtn label="Cancel" />
       <button
         type="button"
-        onClick={saveChanges}
+        onClick={createTodo}
       >
         Save
       </button>

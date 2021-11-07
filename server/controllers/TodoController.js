@@ -20,8 +20,30 @@ exports.getTodos = async (req, res) => {
     });
   };
 };
-exports.createTodo = (req, res) => {
-  res.end('createTodo')
+exports.createTodo = async (req, res) => {
+  const { todo } = req.body;
+  
+  try {
+    const newTodo = await Todo.create(todo);
+    const { _id } = newTodo;
+    const { email } = req.user;
+    const user = await User.findOneAndUpdate(
+      { email: email },
+      {
+        $push: {
+          todos: _id
+        }
+      });
+    if (!user) {
+      throw new Error('User not found');
+    } else {
+      res.status(200).json('Success');
+    }
+  } catch (error) {
+    res.status(500).json({
+      error: error,
+    });
+  };
 };
 exports.updateTodo = async (req, res) => {
   const { id } = req.params;

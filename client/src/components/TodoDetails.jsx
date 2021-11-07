@@ -16,7 +16,7 @@ export default function TodoDetails({data}) {
     <>
       <p>{title}</p>
       <ReactMarkdown>{content}</ReactMarkdown>
-      <p>{`Last edited ${lastEditTime}`}</p>
+      <p>{`Last edited ${moment(lastEditTime).local()}`}</p>
       <BackBtn label="Go Back" />
       <button type="button" onClick={openEdit}>Edit</button>
     </>
