@@ -15,9 +15,9 @@ export default function TodoEditForm({ todoItem, todoId }) {
   function handleOnChange(e) {
     const name = e.target.name;
     const value = e.target.value;
-    setFormData((prevState) => ({ ...prevState, [name]: value }))
-    setFormData((prevState) => ({ ...prevState, lastEditTime: new Date }))
-  }
+    setFormData((prevState) => ({ ...prevState, [name]: value }));
+    setFormData((prevState) => ({ ...prevState, lastEditTime: new Date }));
+  };
   
   function saveChanges() {
     if (formData === todoItem) {
@@ -29,7 +29,7 @@ export default function TodoEditForm({ todoItem, todoId }) {
       //TODO handle 401 on save/create/remove todo
       // else flash fail message and don't redirect
     }
-  }
+  };
 
   return (
     <>
@@ -40,5 +40,5 @@ export default function TodoEditForm({ todoItem, todoId }) {
       <BackBtn label="Cancel" />
       <button type="button" onClick={saveChanges}>Save</button>
     </>
-  )
-}
+  );
+};

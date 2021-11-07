@@ -7,20 +7,20 @@ const Card = styled.div`
   padding: 7px;
   border-radius: 6px;
   white-space: nowrap;
-`
+`;
 
 export default function TodoCard({data}) {
   const { title, content, id } = data;
   const history = useHistory();
 
   function openDetails() {
-    history.push(`/todo/${id}`)
-  }
+    history.push(`/todo/${id}`);
+  };
 
   return (
     <Card onClick={openDetails}>
       <p>{title}</p>
       <p>{content}</p>
     </Card>
-  )
-}
+  );
+};

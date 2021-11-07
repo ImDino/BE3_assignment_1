@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useHistory } from "react-router-dom";
 
 export default function BackBtn({label}) {
@@ -6,7 +6,7 @@ export default function BackBtn({label}) {
 
   function goBack() {
     history.goBack();
-  }
+  };
 
   return (
     <button
@@ -15,5 +15,5 @@ export default function BackBtn({label}) {
     >
       {label}
     </button>
-  )
-}
+  );
+};

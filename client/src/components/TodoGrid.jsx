@@ -1,6 +1,5 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { UserContext } from '../contexts/UserContext';
 import TodoCard from './TodoCard';
 
 const StyledGrid = styled.div`
@@ -33,5 +32,5 @@ export default function TodoGrid({data}) { //REVIEW change from data to todoList
         }
       </StyledGrid>
     </>
-  )
-}
+  );
+};

@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useHistory } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
@@ -9,8 +9,8 @@ export default function TodoDetails({data}) {
   const history = useHistory();
 
   function openEdit() {
-    history.push(`/todo/${id}/edit`)
-  }
+    history.push(`/todo/${id}/edit`);
+  };
 
   return (
     <>
@@ -20,5 +20,5 @@ export default function TodoDetails({data}) {
       <BackBtn label="Go Back" />
       <button type="button" onClick={openEdit}>Edit</button>
     </>
-  )
-}
+  );
+};
