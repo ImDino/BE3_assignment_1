@@ -15,13 +15,12 @@ export default function TodoEditForm({ todoItem, todoId }) {
     const name = e.target.name;
     const value = e.target.value;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
-    setFormData((prevState) => ({ ...prevState, lastEditTime: new Date }));
+    setFormData((prevState) => ({ ...prevState, lastEditTime: new Date() }));
   };
   
   function saveChanges() {
     if (formData === todoItem) {
-      //history.push(`/todo/${todoId}`);
-      history.goBack(); //REVIEW cleaner, but safe?
+      history.goBack();
     } else {
       FetchKit.updateTodo(todoId, formData)
         .then(res => {
@@ -35,11 +34,11 @@ export default function TodoEditForm({ todoItem, todoId }) {
             newTodoList[updateIndex] = formData;
             setTodoList([...newTodoList]);
             setMessage('Updated successfully!');
-            history.goBack(); //REVIEW cleaner, but safe?
+            history.goBack();
           }
         })
         .catch(error => {
-          handleError(error); //REVIEW does this work? test in postman
+          handleError(error);
         });
     }
   };
