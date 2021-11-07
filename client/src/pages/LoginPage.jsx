@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import GoogleLogin from 'react-google-login';
 import { FetchKit, setToken } from '../data/FetchKit';
 import { UserContext } from "../contexts/UserContext";
@@ -24,7 +24,7 @@ export default function LoginPage() {
       })
       .catch(error => {
         setMessageRed(true);
-        setMessage('Something went wrong.')
+        setMessage('Something went wrong.');
       });
   };
   
@@ -44,5 +44,5 @@ export default function LoginPage() {
         cookiePolicy={'single_host_origin'}
       />
     </div>
-  )
-}
+  );
+};

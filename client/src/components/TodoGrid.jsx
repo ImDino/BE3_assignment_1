@@ -20,11 +20,11 @@ const StyledGrid = styled.div`
     };
 `;
 
-export default function TodoGrid({data}) { //REVIEW change from data to todoList?
+export default function TodoGrid({todoList}) { //REVIEW change from data to todoList?
   return (
     <StyledGrid>
       {
-        data.map((todo, index) => {
+        todoList.map((todo, index) => {
           return <TodoCard data={todo} key={index}/>
         })
       }

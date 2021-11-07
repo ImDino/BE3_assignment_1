@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import styled from 'styled-components'
+import styled from 'styled-components';
 import { UserContext } from "../contexts/UserContext";
 
 const StyledBanner = styled.div`
@@ -12,7 +12,7 @@ const StyledBanner = styled.div`
   background-color: ${props => props.warning ? "red" : "#10d62a"};
   justify-content: center;
   align-items: center;
-`
+`;
 
 export default function MessageBanner() {
   const { message, messageRed } = useContext(UserContext);
@@ -21,5 +21,5 @@ export default function MessageBanner() {
     <StyledBanner warning={messageRed}>
       <span>{message}</span>
     </StyledBanner>
-  )
-}
+  );
+};

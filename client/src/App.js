@@ -39,7 +39,7 @@ export default function App() {
     }
   }, [isLoggedIn, userInfo]);
   
-  useEffect(() => { //TODO extract and make sure setMessage is reachable in extracted error handler
+  useEffect(() => {
     setTimeout(() => {
       setMessage(null);
       setMessageRed(false);
@@ -49,7 +49,7 @@ export default function App() {
   const validateToken = () => {
     FetchKit.getUserData()
       .then(res => {
-        const { data } = res; //TODO make the response "res.data.token"
+        const { data } = res;
         setUserInfo(data);
         setIsLoggedIn(true);
       })
@@ -100,5 +100,5 @@ export default function App() {
           <Route>404</Route>
       </Switch>
     </UserContext.Provider>
-  )
-}
+  );
+};

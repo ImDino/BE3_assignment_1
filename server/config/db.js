@@ -7,7 +7,7 @@ const db = {
   config: {
     useNewUrlParser: true,
     useUnifiedTopology: true
-  }
+  },
 };
 
 module.exports = db;

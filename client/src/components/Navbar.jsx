@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { UserContext } from "../contexts/UserContext";
 
@@ -28,5 +28,5 @@ export default function Navbar() {
         </>
       )}
     </StyledNavbar>
-  )
-}
+  );
+};

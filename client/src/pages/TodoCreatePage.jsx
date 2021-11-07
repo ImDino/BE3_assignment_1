@@ -1,5 +1,5 @@
-import React from 'react'
-import TodoCreateForm from '../components/TodoCreateForm'
+import React from 'react';
+import TodoCreateForm from '../components/TodoCreateForm';
 
 export default function TodoCreatePage() {
   return (
@@ -7,5 +7,5 @@ export default function TodoCreatePage() {
       <h2>Create Todo</h2>
       <TodoCreateForm />
     </>
-  )
-}
+  );
+};
