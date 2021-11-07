@@ -90,6 +90,7 @@ export default function App() {
     >
       {isLoggedIn && (<Navbar />)}
       {message && (<MessageBanner />)}
+      <h1>My Todo App</h1>
       <Switch>
           <Route path='/login' component={LoginPage} />
           <Route path='/todo/create' component={TodoCreatePage} />
