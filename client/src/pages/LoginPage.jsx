@@ -37,7 +37,7 @@ export default function LoginPage() {
     <div>
       <h2>Login with google</h2>
       <GoogleLogin
-        clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
+        client_id={process.env.REACT_APP_GOOGLE_CLIENT_ID}
         buttonText="Login"
         onSuccess={responseSuccessGoogle}
         onFailure={responseErrorGoogle}
