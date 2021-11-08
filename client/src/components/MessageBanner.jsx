@@ -15,7 +15,20 @@ const StyledBanner = styled.div`
 `;
 
 export default function MessageBanner() {
-  const { message, messageRed } = useContext(UserContext);
+  const { message, setMessage, messageRed, setMessageRed } = useContext(UserContext);
+  let timer;
+
+  const showMessage = () => {
+    timer = setTimeout(() => {
+      setMessage(null);
+      setMessageRed(false);
+    }, 2000);
+  };
+
+  useEffect(() => {
+    clearTimeout(timer);
+    showMessage();
+  }, [message]);
 
   return (
     <StyledBanner warning={messageRed}>

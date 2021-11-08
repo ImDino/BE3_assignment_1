@@ -39,13 +39,6 @@ export default function App() {
     }
   }, [isLoggedIn, userInfo]);
   
-  useEffect(() => {
-    setTimeout(() => {
-      setMessage(null);
-      setMessageRed(false);
-    }, 2000);
-  }, [message]);
-
   const validateToken = () => {
     FetchKit.getUserData()
       .then(res => {
