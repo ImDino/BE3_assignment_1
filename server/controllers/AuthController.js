@@ -24,7 +24,7 @@ exports.googleLogin = async (req, res) => {
       );
       
       if (!existingUser) {
-        User.create({
+        await User.create({
           fullName: name,
           email: email,
         });
