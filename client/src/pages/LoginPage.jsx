@@ -23,16 +23,12 @@ export default function LoginPage() {
         }
       })
       .catch(error => {
-        console.log('error on fetchkit.login');
-        console.log(error);
         setMessageRed(true);
         setMessage('Something went wrong.');
       });
   };
   
   const responseErrorGoogle = (res) => {
-    console.log('responseErrorGoogle');
-    console.log(res);
     setMessageRed(true);
     setMessage('Something went wrong.');
   };
