@@ -33,7 +33,6 @@ exports.googleLogin = async (req, res) => {
         token: accessToken
       });
     } catch (error) {
-      console.log(error)
       res.status(500).json({
         error: "Something went wrong.",
       });

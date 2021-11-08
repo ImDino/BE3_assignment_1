@@ -35,7 +35,7 @@ export const FetchKit = {
   updateTodo: (id, todo) => {
     return serverDefault().patch(`/todo/${id}`, { todo: todo });
   },
-  createTodo: (todo) => {
+  createTodo: todo => {
     return serverDefault().post('/todo', { todo: todo });
   },
   deleteTodo: id => {
