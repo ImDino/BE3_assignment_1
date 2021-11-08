@@ -44,7 +44,7 @@ export default function LoginPage() {
         clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
         buttonText="Login"
         uxMode="redirect"
-        redirectUri={`${process.env.REACT_APP_CLIENT_ROOT}/`}
+        redirectUri={process.env.REACT_APP_CLIENT_ROOT}
         onSuccess={responseSuccessGoogle}
         onFailure={responseErrorGoogle}
         cookiePolicy={'single_host_origin'}
