@@ -13,6 +13,6 @@ const TodoSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-})
+});
 
 module.exports = mongoose.model('Todo', TodoSchema);

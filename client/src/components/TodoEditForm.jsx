@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../contexts/UserContext';
+import UserContext from '../contexts/UserContext';
 import { FetchKit } from '../data/FetchKit';
 import BackBtn from './BackBtn';
 

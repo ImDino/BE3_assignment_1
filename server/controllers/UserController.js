@@ -1,4 +1,1 @@
-
-exports.getUserData = (req, res) => {
-  return res.status(200).json(req.user);
-};
+exports.getUserData = (req, res) => res.status(200).json(req.user);

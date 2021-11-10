@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../contexts/UserContext';
+import UserContext from '../contexts/UserContext';
 import TodoEditForm from '../components/TodoEditForm';
 
 export default function TodoEditPage(props) {

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { GoogleLogout } from 'react-google-login';
-import { UserContext } from '../contexts/UserContext';
+import UserContext from '../contexts/UserContext';
 
 const StyledNavbar = styled.div`
   height: 30px;

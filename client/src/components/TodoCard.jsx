@@ -1,7 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { UserContext } from '../contexts/UserContext';
+import UserContext from '../contexts/UserContext';
 import { FetchKit } from '../data/FetchKit';
 
 const Card = styled.div`

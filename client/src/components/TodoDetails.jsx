@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
 import BackBtn from './BackBtn';
-import { UserContext } from '../contexts/UserContext';
+import UserContext from '../contexts/UserContext';
 
 export default function TodoDetails({ data }) {
   const {

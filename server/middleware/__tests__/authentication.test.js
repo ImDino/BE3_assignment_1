@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { authenticateToken } = require('../authentication');
@@ -7,9 +8,9 @@ test('Verify that authenticateToken returns res.sendStatus(401) when not receivi
   const res = {};
   res.sendStatus = jest.fn((status) => status);
   const next = jest.fn();
-  
+
   authenticateToken(req, res, next);
-  
+
   expect(res.sendStatus.mock.results[0].value).toBe(401);
 });
 
@@ -17,17 +18,17 @@ test('Verify that authenticateToken returns res.sendStatus(403) when receiving a
   const payload = { email: 'test@somedomain.com' };
   const madeUpsecret = 'randomstring';
   const invalidToken = jwt.sign(payload, madeUpsecret);
-  
+
   const req = {};
   req.headers = {
-    authorization: `Bearer ${invalidToken}`
-  }
+    authorization: `Bearer ${invalidToken}`,
+  };
   const res = {};
   res.sendStatus = jest.fn((status) => status);
   const next = jest.fn();
 
   authenticateToken(req, res, next);
-  
+
   expect(res.sendStatus.mock.results[0].value).toBe(403);
 });
 
@@ -35,18 +36,19 @@ test('Verify that authenticateToken passes a valid token, returns req.user with 
   const payload = { email: 'test@somedomain.com' };
   const theRealSecret = process.env.ACCESS_TOKEN_SECRET;
   const validToken = jwt.sign(payload, theRealSecret);
-  
+
   const req = {};
   req.headers = {
-    authorization: `Bearer ${validToken}`
-  }
+    authorization: `Bearer ${validToken}`,
+  };
+  // eslint-disable-next-line no-shadow
   req.user = jest.fn((payload) => payload);
-  
+
   const res = {};
   const next = jest.fn();
-  
+
   await authenticateToken(req, res, next);
-  
+
   expect(req.user.email).toEqual(payload.email);
   expect(next).toHaveBeenCalled();
 });

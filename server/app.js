@@ -1,14 +1,15 @@
 const cors = require('cors');
-const express = require('express')
-const app = express()
+const express = require('express');
 
-//Middleware
+const app = express();
+
+// Middleware
 const TodoRoute = require('./routes/TodoRoute');
 const AuthRoute = require('./routes/AuthRoute');
 const UserRoute = require('./routes/UserRoute');
 const { authenticateToken } = require('./middleware/authentication');
 
-//Cors
+// Cors
 app.use(cors({
   origin: process.env.CLIENT || 'http://localhost:3000',
   credentials: true,
@@ -16,7 +17,7 @@ app.use(cors({
 
 app.use(express.json());
 
-//Routes
+// Routes
 app.use('/auth', AuthRoute);
 app.use('/todo', authenticateToken, TodoRoute);
 app.use('/user', authenticateToken, UserRoute);

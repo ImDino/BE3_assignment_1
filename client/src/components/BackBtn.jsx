@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { UserContext } from '../contexts/UserContext';
+import UserContext from '../contexts/UserContext';
 
 // eslint-disable-next-line react/prop-types
 export default function BackBtn({ label }) {

@@ -2,7 +2,7 @@
 import React, { useContext } from 'react';
 import GoogleLogin from 'react-google-login';
 import { FetchKit, setToken } from '../data/FetchKit';
-import { UserContext } from '../contexts/UserContext';
+import UserContext from '../contexts/UserContext';
 
 export default function LoginPage() {
   const {
