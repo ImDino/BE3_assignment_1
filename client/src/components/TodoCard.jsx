@@ -59,7 +59,7 @@ export default function TodoCard({ data }) {
   }
 
   return (
-    <Card onClick={() => openDetails}>
+    <Card onClick={() => openDetails()}>
       <button
         type="button"
         onClick={deleteTodo}
