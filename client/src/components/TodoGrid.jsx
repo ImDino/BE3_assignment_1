@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import styled from 'styled-components';
 import TodoCard from './TodoCard';
@@ -20,14 +21,12 @@ const StyledGrid = styled.div`
     };
 `;
 
-export default function TodoGrid({todoList}) { //REVIEW change from data to todoList?
+export default function TodoGrid({ todoList }) { // REVIEW change from data to todoList?
   return (
     <StyledGrid>
       {
-        todoList.map((todo, index) => {
-          return <TodoCard data={todo} key={index}/>
-        })
+        todoList.map((todo) => <TodoCard data={todo} key={todo._id} />)
       }
     </StyledGrid>
   );
-};
+}

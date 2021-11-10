@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { UserContext } from "../contexts/UserContext";
 import { GoogleLogout } from 'react-google-login';
+import { UserContext } from '../contexts/UserContext';
 
 const StyledNavbar = styled.div`
   height: 30px;
@@ -9,14 +9,14 @@ const StyledNavbar = styled.div`
 
 export default function Navbar() {
   const { kickUser, history, isLoggedIn } = useContext(UserContext);
-  
+
   return (
     <StyledNavbar>
       {isLoggedIn && (
         <>
           <button
             type="button"
-            onClick={() => {history.push('/')}}
+            onClick={() => { history.push('/'); }}
           >
             Home
           </button>
@@ -24,10 +24,9 @@ export default function Navbar() {
             clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
             buttonText="Logout"
             onLogoutSuccess={kickUser}
-          >
-          </GoogleLogout>
+          />
         </>
       )}
     </StyledNavbar>
   );
-};
+}

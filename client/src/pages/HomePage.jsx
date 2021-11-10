@@ -10,19 +10,19 @@ export default function HomePage() {
       <h2>Todo List</h2>
       <button
         type="button"
-        onClick={() => { history.push('/todo/create') }}
+        onClick={() => { history.push('/todo/create'); }}
       >
         Create Todo
       </button>
       {
-        todoList 
-        ? (
-          <TodoGrid todoList={todoList}/>
-        )
-        : (
-          <p>Loading...</p>
-        )
+        todoList
+          ? (
+            <TodoGrid todoList={todoList} />
+          )
+          : (
+            <p>Loading...</p>
+          )
       }
     </>
   );
-};
+}

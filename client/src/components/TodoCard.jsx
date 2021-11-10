@@ -1,6 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from '../contexts/UserContext';
 import { FetchKit } from '../data/FetchKit';
 
 const Card = styled.div`
@@ -27,37 +28,37 @@ const Card = styled.div`
   }
 `;
 
-export default function TodoCard({data}) {
+export default function TodoCard({ data }) {
   const { title, _id } = data;
-  const { history, handleError, todoList, setTodoList, setMessage } = useContext(UserContext);
+  const {
+    history, handleError, todoList, setTodoList, setMessage,
+  } = useContext(UserContext);
 
   function openDetails() {
     history.push(`/todo/${_id}`);
-  };
+  }
 
   function deleteTodo(e) {
     e.stopPropagation();
     FetchKit.deleteTodo(_id)
-      .then(res => {
+      .then((res) => {
         const { status } = res;
-        
+
         if (status === 200) {
-          const removeIndex = todoList.findIndex(todo => {
-            return todo._id === _id;
-          });
-          let newTodoList = todoList;
+          const removeIndex = todoList.findIndex((todo) => todo._id === _id);
+          const newTodoList = todoList;
           newTodoList.splice(removeIndex, 1);
           setTodoList([...newTodoList]);
           setMessage('Removed successfully!');
         }
       })
-      .catch(error => {
+      .catch((error) => {
         handleError(error);
       });
-  };
+  }
 
   return (
-    <Card onClick={openDetails}>
+    <Card onClick={() => openDetails}>
       <button
         type="button"
         onClick={deleteTodo}
@@ -67,4 +68,4 @@ export default function TodoCard({data}) {
       <p>{title}</p>
     </Card>
   );
-};
+}

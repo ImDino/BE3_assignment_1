@@ -1,28 +1,31 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { UserContext } from "../contexts/UserContext";
+/* eslint-disable no-underscore-dangle */
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../contexts/UserContext';
 import { FetchKit } from '../data/FetchKit';
 import BackBtn from './BackBtn';
 
 export default function TodoCreateForm() {
-  const { todoList, setTodoList, setMessage, handleError, history } = useContext(UserContext);
+  const {
+    todoList, setTodoList, setMessage, handleError, history,
+  } = useContext(UserContext);
   const [formData, setFormData] = useState({});
 
   function handleOnChange(e) {
-    const name = e.target.name;
-    const value = e.target.value;
+    const { name } = e.target;
+    const { value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
     setFormData((prevState) => ({ ...prevState, lastEditTime: new Date() }));
-  };
-  
+  }
+
   function createTodo() {
     FetchKit.createTodo(formData)
-      .then(res => {
+      .then((res) => {
         const { status } = res;
         const { todoId } = res.data;
 
         if (status === 200) {
-          let newTodoList = todoList;
-          let newTodo = formData;
+          const newTodoList = todoList;
+          const newTodo = formData;
           newTodo._id = todoId;
           newTodoList.push(newTodo);
           setTodoList([...newTodoList]);
@@ -30,10 +33,10 @@ export default function TodoCreateForm() {
           history.goBack();
         }
       })
-      .catch(error => {
+      .catch((error) => {
         handleError(error);
       });
-  };
+  }
 
   return (
     <>
@@ -59,4 +62,4 @@ export default function TodoCreateForm() {
       </button>
     </>
   );
-};
+}

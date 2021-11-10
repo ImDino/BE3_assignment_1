@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { UserContext } from "../contexts/UserContext";
+import { UserContext } from '../contexts/UserContext';
 
 const StyledBanner = styled.div`
   width: 100%;
@@ -9,13 +9,15 @@ const StyledBanner = styled.div`
   top: 65px;
   left: 0;
   display: flex;
-  background-color: ${props => props.warning ? "red" : "#10d62a"};
+  background-color: ${(props) => (props.warning ? 'red' : '#10d62a')};
   justify-content: center;
   align-items: center;
 `;
 
 export default function MessageBanner() {
-  const { message, setMessage, messageRed, setMessageRed } = useContext(UserContext);
+  const {
+    message, setMessage, messageRed, setMessageRed,
+  } = useContext(UserContext);
   let timer;
 
   const showMessage = () => {
@@ -35,4 +37,4 @@ export default function MessageBanner() {
       <span>{message}</span>
     </StyledBanner>
   );
-};
+}
