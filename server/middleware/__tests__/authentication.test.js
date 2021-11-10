@@ -33,7 +33,7 @@ test('Verify that authenticateToken returns res.sendStatus(403) when receiving a
 
 test('Verify that authenticateToken passes a valid token, returns req.user with the payload email, and calls next()', async () => {
   const payload = { email: 'test@somedomain.com' };
-  const theRealSecret = process.env.ACCESS_TOKEN_SECRET;
+  const theRealSecret = process.env.ACCESS_TOKEN_SECRET || 'default-secret';
   const validToken = jwt.sign(payload, theRealSecret);
 
   const req = {};

@@ -6,7 +6,9 @@ exports.authenticateToken = (req, res, next) => {
 
   if (token == null) return res.sendStatus(401);
 
-  jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
+  const secret = process.env.ACCESS_TOKEN_SECRET || 'default-secret';
+
+  jwt.verify(token, secret, (err, user) => {
     if (err) return res.sendStatus(403);
     req.user = user;
     return next();
