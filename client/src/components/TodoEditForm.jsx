@@ -4,6 +4,7 @@ import UserContext from '../contexts/UserContext';
 import { FetchKit } from '../data/FetchKit';
 import BackBtn from './BackBtn';
 
+// eslint-disable-next-line react/prop-types
 export default function TodoEditForm({ todoItem, todoId }) {
   const {
     todoList, setTodoList, setMessage, handleError, history,

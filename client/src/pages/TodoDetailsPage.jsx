@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/destructuring-assignment */
 /* eslint-disable no-underscore-dangle */
 import React, { useContext, useEffect, useState } from 'react';
 import UserContext from '../contexts/UserContext';
@@ -6,15 +8,15 @@ import TodoDetails from '../components/TodoDetails';
 export default function TodoDetailsPage(props) {
   const { todoList } = useContext(UserContext);
   const [todoItem, setTodoItem] = useState({});
-  const todoId = props.match.params.id;
+  const { id } = props.match.params;
 
   useEffect(() => {
     if (todoList) {
       setTodoItem(
-        todoList.filter((todo) => todo._id === todoId)[0],
+        todoList.filter((todo) => todo._id === id)[0],
       );
     }
-  }, [todoList, todoId]);
+  }, [todoList, id]);
 
   return (
     <>

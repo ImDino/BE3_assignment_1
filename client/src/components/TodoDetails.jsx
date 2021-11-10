@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { useContext } from 'react';
 import ReactMarkdown from 'react-markdown';
 import moment from 'moment';
